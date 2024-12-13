@@ -1,118 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <?php include('../server/reg.php'); ?>
-    <title>Grading System</title>
+    <title>Academic Grading System</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../style.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        dark: {
-                            100: '#1E293B',
-                            200: '#0F172A'
-                        }
-                    },
-                    animation: {
-                        'bounce-slow': 'bounce 3s infinite'
-                    }
-                }
-            }
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
         }
-    </script>
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
+        }
+    </style>
 </head>
 
-<body class="bg-gradient-to-br from-dark-200 via-dark-100 to-dark-200 text-gray-100 min-h-screen flex items-center justify-center p-4">
-
+<body class="min-h-screen flex flex-col">
+    <!-- Toast Notification -->
     <div id="toast" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg opacity-0 pointer-events-none transition-all duration-300">
         <span id="toast-message"></span>
     </div>
 
-    <div class="fixed inset-0 -z-10 overflow-hidden">
-        <div class="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div class="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-    </div>
-
-    <div class="container max-w-6xl mx-auto">
-        <div class="flex flex-wrap items-center justify-center -mx-4">
-            <div class="w-full lg:w-1/2 px-4 mb-8 lg:mb-0">
-                <div class="space-y-8 slide-in">
-                    <div class="space-y-4">
-                        <h1 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                            Welcome to
-                        </h1>
-                        <div class="space-y-2">
-                            <h2 class="text-4xl md:text-5xl font-bold text-gray-100 slide-in">Grading</h2>
-                            <h2 class="text-4xl md:text-5xl font-bold text-blue-500 slide-in">Management</h2>
-                            <h2 class="text-4xl md:text-5xl font-bold text-purple-500 slide-in">System</h2>
+    <div class="flex-1 flex items-center justify-center p-4">
+        <div class="w-full max-w-5xl">
+            <!-- Main Container -->
+            <div class="glass-effect rounded-3xl p-8 md:p-12">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Left Side - Branding -->
+                    <div class="text-center md:text-left space-y-8">
+                        <div>
+                            <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-red-100 mb-6">
+                                <i class="fas fa-graduation-cap text-red-600 text-xl"></i>
+                            </div>
+                            <h1 class="text-4xl font-bold text-gray-900 mb-4">Academic Grading System</h1>
+                            <p class="text-gray-600 text-lg">Empowering educators with smart grading solutions</p>
                         </div>
-                    </div>
 
-                    <p class="text-gray-400 text-xl">
-                        Streamline your clinical education experience with our comprehensive management system.
-                    </p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="p-6 glass-effect rounded-2xl hover:scale-105 transition-all duration-300 cursor-pointer slide-in">
-                            <i class="fas fa-user-md text-blue-500 text-3xl mb-4"></i>
-                            <h3 class="font-semibold text-lg">Student Management</h3>
-                        </div>
-                        <div class="p-6 glass-effect rounded-2xl hover:scale-105 transition-all duration-300 cursor-pointer slide-in">
-                            <i class="fas fa-calendar-alt text-purple-500 text-3xl mb-4"></i>
-                            <h3 class="font-semibold text-lg">Schedule Planning</h3>
-                        </div>
-                        <div class="p-6 glass-effect rounded-2xl hover:scale-105 transition-all duration-300 cursor-pointer slide-in">
-                            <i class="fas fa-chart-line text-green-500 text-3xl mb-4"></i>
-                            <h3 class="font-semibold text-lg">Performance Tracking</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="w-full lg:w-1/2 px-4">
-                <div class="glass-effect rounded-3xl p-8 shadow-2xl slide-in">
-                    <div class="flex justify-center mb-8">
-                        <div class="bg-dark-200/50 rounded-full p-2">
-                            <div class="flex space-x-2">
-                                <h1>Login Form</h1>
+                        <!-- Features Grid -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 bg-white rounded-xl shadow-sm">
+                                <i class="fas fa-chart-line text-red-600 mb-2"></i>
+                                <h3 class="font-medium text-gray-900">Grade Analytics</h3>
+                            </div>
+                            <div class="p-4 bg-white rounded-xl shadow-sm">
+                                <i class="fas fa-users text-red-600 mb-2"></i>
+                                <h3 class="font-medium text-gray-900">Student Management</h3>
+                            </div>
+                            <div class="p-4 bg-white rounded-xl shadow-sm">
+                                <i class="fas fa-file-alt text-red-600 mb-2"></i>
+                                <h3 class="font-medium text-gray-900">Report Generation</h3>
+                            </div>
+                            <div class="p-4 bg-white rounded-xl shadow-sm">
+                                <i class="fas fa-clock text-red-600 mb-2"></i>
+                                <h3 class="font-medium text-gray-900">Real-time Updates</h3>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Login Form -->
-                    <form id="loginForm" class="space-y-6" method="POST" action="../server/login.php">
-                        <div class="relative group">
-                            <i class="fas fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-blue-500 transition-colors"></i>
-                            <input type="text" class="w-full bg-dark-200/50 rounded-lg px-10 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300" placeholder="Email" name="email">
+                    <!-- Right Side - Login Form -->
+                    <div class="bg-white p-8 rounded-2xl shadow-sm">
+                        <div class="text-center mb-8">
+                            <h2 class="text-2xl font-bold text-gray-900">Welcome Back</h2>
+                            <p class="text-gray-500 mt-2">Sign in to continue to your account</p>
                         </div>
-                        <div class="relative group">
-                            <i class="fas fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-blue-500 transition-colors"></i>
-                            <input type="password" class="w-full bg-dark-200/50 rounded-lg px-10 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300" placeholder="Password" name="password">
-                        </div>
-                        <div class="flex items-center justify-between text-sm">
-                            <label class="flex items-center space-x-2 cursor-pointer">
-                                <input type="checkbox" class="form-checkbox rounded bg-dark-200/50 border-gray-600 text-blue-500 focus:ring-blue-500">
-                                <span>Remember me</span>
-                            </label>
-                            <a href="#" class="text-blue-500 hover:text-blue-400 transition-colors">Forgot Password?</a>
-                        </div>
-                        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-4 rounded-lg hover:opacity-90 transition-all duration-300 transform hover:scale-[1.02]">
-                            Login
-                        </button>
-                    </form>
+
+                        <form id="loginForm" class="space-y-6" method="POST" action="../server/login.php">
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                    <input type="email" 
+                                        name="email"
+                                        class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-all duration-200"
+                                        placeholder="Enter your email">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                                    <input type="password" 
+                                        name="password"
+                                        class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-red-500 focus:ring-2 focus:ring-red-200 transition-all duration-200"
+                                        placeholder="Enter your password">
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500">
+                                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                                </label>
+                                <a href="#" class="text-sm text-red-600 hover:text-red-700 font-medium">Forgot password?</a>
+                            </div>
+
+                            <button type="submit" 
+                                class="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-all duration-200 font-medium">
+                                Sign In
+                            </button>
+
+                            <div class="relative my-6">
+                                <div class="absolute inset-0 flex items-center">
+                                    <div class="w-full border-t border-gray-200"></div>
+                                </div>
+                                <div class="relative flex justify-center text-sm">
+                                    <span class="px-2 bg-white text-gray-500">Or continue with</span>
+                                </div>
+                            </div>
+
+                            <button type="button" 
+                                class="w-full bg-white border border-gray-200 text-gray-700 px-4 py-3 rounded-lg hover:bg-gray-50 transition-all duration-200 flex items-center justify-center space-x-2">
+                                <img src="https://www.google.com/favicon.ico" alt="Google" class="w-5 h-5">
+                                <span>Sign in with Google</span>
+                            </button>
+                        </form>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="text-center mt-8 text-gray-500 text-sm">
+                <p>© 2024 Academic Grading System. All rights reserved.</p>
             </div>
         </div>
     </div>
 
     <script src="./toast.js"></script>
-
 </body>
-
 </html>

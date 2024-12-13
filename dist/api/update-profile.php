@@ -20,7 +20,7 @@ function sendSuccessResponse($data = []) {
 try {
     $userId = checkAuth();
     
-    $userModel = new UserModel();
+    // $userModel = new UserModel();
 
     if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] === UPLOAD_ERR_OK) {
         $imageUploader = new ImageUploader();
